@@ -81,6 +81,7 @@
 .hero-name span.gradient-text {
   background: linear-gradient(135deg, #ffffff 15%, var(--neon-cyan) 60%, var(--neon-purple) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   filter: drop-shadow(0 4px 20px rgba(0, 240, 255, 0.35));
