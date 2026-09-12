@@ -61,12 +61,14 @@ class OrbitalTerminal {
         this.printLine('  <span style="color:var(--neon-cyan)">warp</span>        : Engage hyperspace starfield acceleration', 'system');
         this.printLine('  <span style="color:var(--neon-cyan)">audio</span>       : Toggle sci-fi audio synthesizer', 'system');
         this.printLine('  <span style="color:var(--neon-cyan)">clear</span>       : Purge terminal display logs', 'system');
-        this.printLine('  <span style="color:var(--neon-cyan)">contact</span>     : Focus deep-space transmission form', 'system');
+        this.printLine('  <span style="color:var(--neon-cyan)">contact</span>     : Display direct contact channels & transmission form', 'system');
         break;
 
       case 'about':
         this.printLine('NAME: Hitesh Sundesha', 'purple');
         this.printLine('ROLE: B.Tech Computer Science & Engineering Student', 'system');
+        this.printLine('PHONE/MOBILE: +91 7728061918', 'success');
+        this.printLine('GMAIL: sundeshahitesh187@gmail.com', 'success');
         this.printLine('SPECIALIZATION: Distributed Systems, Full-Stack Architecture, AI & Cloud Computing', 'system');
         this.printLine('MISSION: Architecting resilient, high-performance software with state-of-the-art interactive aesthetics.', 'system');
         break;
@@ -119,6 +121,15 @@ class OrbitalTerminal {
         break;
 
       case 'contact':
+      case 'email':
+      case 'mail':
+      case 'phone':
+      case 'mobile':
+      case 'call':
+        this.printLine('--- DIRECT QUANTUM FREQUENCIES ---', 'purple');
+        this.printLine('  📱 MOBILE   : <a href="tel:+917728061918" style="color:var(--neon-cyan);text-decoration:underline;">+91 7728061918</a>', 'success');
+        this.printLine('  ✉️ GMAIL    : <a href="mailto:sundeshahitesh187@gmail.com" style="color:var(--neon-cyan);text-decoration:underline;">sundeshahitesh187@gmail.com</a>', 'success');
+        this.printLine('  💬 WHATSAPP : <a href="https://wa.me/917728061918" target="_blank" rel="noopener" style="color:var(--neon-emerald);text-decoration:underline;">wa.me/917728061918</a>', 'system');
         this.printLine('COMM LINK: Initializing quantum transmission buffers below...', 'system');
         const nameInput = document.getElementById('contact-name');
         if (nameInput) nameInput.focus();

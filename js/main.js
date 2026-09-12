@@ -269,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModalListeners();
   initHudControls();
   initAudioToggle();
+  initCopyButtons();
 });
 
 /* --------------------------------------------------------------------------
@@ -755,3 +756,54 @@ function initAudioToggle() {
     });
   }
 }
+
+/* --------------------------------------------------------------------------
+   10. CONTACT FREQUENCIES COPY TO CLIPBOARD
+   -------------------------------------------------------------------------- */
+function initCopyButtons() {
+  document.querySelectorAll('.channel-copy-btn').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const val = btn.getAttribute('data-copy');
+      if (!val) return;
+
+      const notifyCopied = () => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✓ Copied';
+        btn.classList.add('copied');
+        if (window.soundFX && window.soundFX.playClick) {
+          window.soundFX.playClick();
+        }
+        if (window.orbitalTerminal) {
+          window.orbitalTerminal.printLine(`TELEMETRY COPIED: "${val}" copied to clipboard buffer.`, 'success');
+        }
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2200);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(val);
+          notifyCopied();
+          return;
+        } catch (err) {
+          console.warn('Clipboard API failed, using fallback', err);
+        }
+      }
+
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = val;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      notifyCopied();
+    });
+  });
+}
+
