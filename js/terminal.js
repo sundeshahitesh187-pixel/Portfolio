@@ -55,6 +55,7 @@ class OrbitalTerminal {
       case 'help':
         this.printLine('--- AVAILABLE SUBSYSTEM COMMANDS ---', 'system');
         this.printLine('  <span style="color:var(--neon-cyan)">about</span>       : Telemetry overview of Hitesh Sundesha', 'system');
+        this.printLine('  <span style="color:var(--neon-cyan)">education</span>   : Review academic trajectory & degree credentials', 'system');
         this.printLine('  <span style="color:var(--neon-cyan)">skills</span>      : Query Asteroid Belt technical skills', 'system');
         this.printLine('  <span style="color:var(--neon-cyan)">projects</span>    : Review orbital software & AI modules', 'system');
         this.printLine('  <span style="color:var(--neon-cyan)">gravity [mode]</span>: Alter physics (zero-g, moon, earth, vortex, docked)', 'system');
@@ -62,6 +63,17 @@ class OrbitalTerminal {
         this.printLine('  <span style="color:var(--neon-cyan)">audio</span>       : Toggle sci-fi audio synthesizer', 'system');
         this.printLine('  <span style="color:var(--neon-cyan)">clear</span>       : Purge terminal display logs', 'system');
         this.printLine('  <span style="color:var(--neon-cyan)">contact</span>     : Display direct contact channels & transmission form', 'system');
+        break;
+
+      case 'education':
+      case 'academic':
+      case 'academics':
+        this.printLine('--- ACADEMIC TRAJECTORY & TELEMETRY ---', 'purple');
+        this.printLine('  🎓 DEGREE     : Pursuing B.Tech CSE at <a href="https://jecrcuniversity.edu.in/" target="_blank" rel="noopener noreferrer" style="color:var(--neon-cyan);text-decoration:underline;">JECRC University</a>', 'success');
+        this.printLine('  🏫 CLASS 12TH : Rajasthan Board of Secondary Education (RBSE) — Achieved Score: 86.80%', 'system');
+        this.printLine('  🛰️ STATUS     : Active Undergraduate Computational Engineering', 'purple');
+        const eduSec = document.getElementById('education');
+        if (eduSec) eduSec.scrollIntoView({ behavior: 'smooth' });
         break;
 
       case 'about':

@@ -263,6 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCustomCursor();
   initDynamicTyping();
   init3DTypography();
+  initEducationInteractions();
   initPhysicsElements();
   initSkillsInteractions();
   initProjectsInteractions();
@@ -303,7 +304,7 @@ function initCustomCursor() {
   requestAnimationFrame(renderCursor);
 
   // Hover expansion on interactive elements
-  const hoverTargets = 'a, button, .skill-asteroid, .project-card, .btn-cyber, .cmd-chip, .hud-mode-btn';
+  const hoverTargets = 'a, button, .skill-asteroid, .project-card, .btn-cyber, .cmd-chip, .hud-mode-btn, .edu-card, .edu-pill, .edu-university-link';
   document.querySelectorAll(hoverTargets).forEach(el => {
     el.addEventListener('mouseenter', () => {
       ring.classList.add('active-gravity');
@@ -803,6 +804,41 @@ function initCopyButtons() {
       document.execCommand('copy');
       document.body.removeChild(ta);
       notifyCopied();
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   11. EDUCATION CARDS 3D TILT & SOUND INTERACTION
+   -------------------------------------------------------------------------- */
+function initEducationInteractions() {
+  const cards = document.querySelectorAll('.edu-card');
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      const rotX = -(y / (rect.height / 2)) * 6;
+      const rotY = (x / (rect.width / 2)) * 6;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-14px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // Sound triggers on university link click
+  const univLinks = document.querySelectorAll('.edu-university-link, .edu-visit-link, .edu-spec-link');
+  univLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.soundFX && window.soundFX.playClick) {
+        window.soundFX.playClick();
+      }
     });
   });
 }

@@ -1617,3 +1617,558 @@
     display: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   EDUCATION & ACADEMIC TRAJECTORY SECTION ("COSMIC ORBITS")
+   Theme: Cosmic Glassmorphism with Floating Anti-Gravity Cards & Radiant Neon
+   -------------------------------------------------------------------------- */
+.education-section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.edu-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* Floating Card Base Container */
+.edu-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  perspective: 1000px;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+/* Card 1 Animation - Floating Levitation */
+.edu-card-rbse {
+  animation: cosmicFloat1 6.5s ease-in-out infinite;
+}
+
+/* Card 2 Animation - Floating Levitation (Phase-shifted) */
+.edu-card-jecrc {
+  animation: cosmicFloat2 7s ease-in-out infinite 0.7s;
+}
+
+@keyframes cosmicFloat1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0.4deg);
+  }
+}
+
+@keyframes cosmicFloat2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(-0.5deg);
+  }
+}
+
+.edu-card:hover {
+  animation-play-state: paused;
+  transform: translateY(-16px) scale(1.015);
+}
+
+/* Ambient Cosmic Glow Halo Behind Cards */
+.edu-card-glow-halo {
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(var(--radius-lg) + 1px);
+  background: radial-gradient(circle at 30% 20%, rgba(0, 240, 255, 0.28) 0%, transparent 65%),
+              radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.22) 0%, transparent 70%);
+  filter: blur(16px);
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-smooth), filter var(--transition-smooth);
+}
+
+.edu-card-glow-halo.purple {
+  background: radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.3) 0%, transparent 65%),
+              radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.2) 0%, transparent 70%);
+}
+
+.edu-card:hover .edu-card-glow-halo {
+  opacity: 1;
+  filter: blur(24px);
+}
+
+/* Glassmorphic Inner Shell */
+.edu-card-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(145deg, rgba(15, 20, 48, 0.78) 0%, rgba(8, 11, 28, 0.85) 100%);
+  backdrop-filter: var(--glass-blur-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  border: 1px solid var(--glass-border);
+  border-top-color: var(--glass-border-highlight);
+  border-radius: var(--radius-lg);
+  padding: 34px 30px;
+  box-shadow: var(--shadow-cosmic), 0 0 25px -8px var(--neon-cyan-subtle);
+  overflow: hidden;
+  transition: border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.edu-card-rbse .edu-card-inner {
+  border-color: rgba(0, 240, 255, 0.28);
+}
+
+.edu-card-rbse:hover .edu-card-inner {
+  border-color: var(--neon-cyan);
+  box-shadow: var(--shadow-cosmic), var(--shadow-glow-cyan);
+}
+
+.edu-card-jecrc .edu-card-inner {
+  border-color: rgba(168, 85, 247, 0.32);
+}
+
+.edu-card-jecrc:hover .edu-card-inner {
+  border-color: var(--neon-purple);
+  box-shadow: var(--shadow-cosmic), var(--shadow-glow-purple);
+}
+
+/* Card Topbar */
+.edu-card-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.edu-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-code);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.edu-status-pill.cyan {
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid var(--glass-border-cyan);
+  color: var(--neon-cyan);
+}
+
+.edu-status-pill.purple {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid var(--glass-border-purple);
+  color: var(--neon-purple);
+}
+
+.purple-pulse {
+  background: var(--neon-purple) !important;
+  box-shadow: 0 0 6px var(--neon-purple) !important;
+}
+
+.edu-cosmic-icon {
+  font-size: 1.6rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid var(--glass-border-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.25);
+  transition: transform var(--transition-quick), box-shadow var(--transition-quick);
+}
+
+.edu-cosmic-icon.purple-icon {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: var(--glass-border-purple);
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.25);
+}
+
+.edu-card:hover .edu-cosmic-icon {
+  transform: scale(1.1) rotate(8deg);
+}
+
+/* Card Typography */
+.edu-card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.edu-eyebrow {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--neon-cyan);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.edu-eyebrow.purple {
+  color: var(--neon-purple);
+}
+
+.edu-card-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text-pure);
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+
+.edu-card-summary {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+/* --------------------------------------------------------------------------
+   CARD 1: PROMINENT GLOWING SCORE HIGHLIGHT (86.80%)
+   -------------------------------------------------------------------------- */
+.edu-score-showcase {
+  position: relative;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.06) 0%, rgba(15, 23, 42, 0.6) 100%);
+  border: 1px solid var(--glass-border-cyan);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  margin-bottom: 24px;
+  box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.08), 0 6px 20px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.edu-score-glow-backdrop {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(20px);
+}
+
+.edu-score-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.edu-score-caption {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+.edu-merit-badge {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.25), rgba(168, 85, 247, 0.3));
+  border: 1px solid var(--glass-border-cyan);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.edu-score-main {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.edu-score-number {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  background: linear-gradient(135deg, #ffffff 20%, var(--neon-cyan) 80%, #7ee5ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 16px rgba(0, 240, 255, 0.6));
+}
+
+.edu-progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.edu-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.edu-progress-fill {
+  height: 100%;
+  width: var(--target-width, 86.8%);
+  background: linear-gradient(90deg, var(--neon-cyan) 0%, #00d2ff 60%, var(--neon-purple) 100%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 12px var(--neon-cyan);
+  position: relative;
+}
+
+.edu-progress-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmerProgress 3s infinite linear;
+}
+
+@keyframes shimmerProgress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.edu-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.edu-progress-current {
+  color: var(--neon-cyan);
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   CARD 2: PURSUING B.TECH CSE & JECRC UNIVERSITY HYPERLINK
+   -------------------------------------------------------------------------- */
+.edu-university-link {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 2px solid var(--neon-cyan);
+  padding-bottom: 2px;
+  position: relative;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  transition: all var(--transition-quick);
+  cursor: pointer;
+}
+
+.edu-university-link:hover {
+  color: #ffffff;
+  border-bottom-color: var(--neon-purple);
+  text-shadow: 0 0 16px var(--neon-cyan), 0 0 24px var(--neon-purple);
+  transform: translateY(-2px);
+}
+
+.link-external-icon {
+  font-size: 0.95em;
+  display: inline-block;
+  transition: transform var(--transition-quick);
+}
+
+.edu-university-link:hover .link-external-icon {
+  transform: translate(2px, -2px);
+  color: var(--neon-purple);
+}
+
+.edu-degree-hub {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);
+  border: 1px solid var(--glass-border-purple);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.08), 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.edu-degree-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.edu-degree-title {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+.edu-visit-link {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  color: var(--neon-purple);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid var(--glass-border-purple);
+  transition: all var(--transition-quick);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.edu-visit-link:hover {
+  color: #fff;
+  background: var(--neon-purple);
+  box-shadow: 0 0 12px var(--neon-purple-glow);
+  transform: translateY(-1px);
+}
+
+.edu-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edu-spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+}
+
+.edu-spec-key {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+.edu-spec-value {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.edu-spec-value.glow-spec {
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.35);
+}
+
+.edu-spec-link {
+  color: var(--neon-cyan);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color var(--transition-quick);
+}
+
+.edu-spec-link:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+/* Card Footer Pill Tags */
+.edu-card-footer-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.edu-pill {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 240, 255, 0.06);
+  border: 1px solid var(--glass-border-cyan);
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+  transition: all var(--transition-quick);
+}
+
+.edu-pill:hover {
+  background: rgba(0, 240, 255, 0.15);
+  border-color: var(--neon-cyan);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.edu-pill.purple-pill {
+  background: rgba(168, 85, 247, 0.08);
+  border-color: var(--glass-border-purple);
+}
+
+.edu-pill.purple-pill:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+}
+
+/* Responsive Rules for Education Section */
+@media (max-width: 960px) {
+  .edu-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 600px;
+  }
+  
+  .edu-card-rbse,
+  .edu-card-jecrc {
+    animation-duration: 8s;
+  }
+}
+
+@media (max-width: 580px) {
+  .education-section {
+    padding: 70px 0;
+  }
+
+  .edu-card-inner {
+    padding: 24px 20px;
+  }
+
+  .edu-score-number {
+    font-size: 2.4rem;
+  }
+
+  .edu-spec-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .edu-card-heading {
+    font-size: 1.15rem;
+  }
+}
+
