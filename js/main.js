@@ -271,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHudControls();
   initAudioToggle();
   initCopyButtons();
+  initCosmicChatbotLevitation();
 });
 
 /* --------------------------------------------------------------------------
@@ -842,4 +843,142 @@ function initEducationInteractions() {
     });
   });
 }
+
+/* --------------------------------------------------------------------------
+   12. COSMIC AI CHATBOT ZERO-G LEVITATION ANIMATION INJECTOR
+   Injects cosmic floating animations & glowing aura directly into Botpress
+   Webchat v5 Shadow Root so it matches the portfolio's cosmic gravity theme.
+   -------------------------------------------------------------------------- */
+function initCosmicChatbotLevitation() {
+  const styleId = 'cosmic-chatbot-theme-styles';
+  const customCss = `
+    /* Zero-G Floating Levitation for Botpress Chat Button */
+    #bp-web-widget-container,
+    #bp-widget,
+    .bpFabWrapper,
+    .bpFab,
+    #fab-root,
+    [data-name="fab"] {
+      filter: drop-shadow(0px 0px 20px rgba(0, 255, 255, 0.8)) drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5)) !important;
+      animation: antiGravityFloat 3s ease-in-out infinite !important;
+      z-index: 99999 !important;
+      transform-origin: center bottom !important;
+    }
+
+    #bp-web-widget-container:hover,
+    #bp-widget:hover,
+    .bpFabWrapper:hover,
+    .bpFab:hover,
+    [data-name="fab"]:hover {
+      animation-play-state: paused !important;
+      filter: drop-shadow(0px 0px 28px rgba(0, 255, 255, 1)) drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.8)) !important;
+    }
+
+    .bpFab {
+      border: 2px solid rgba(0, 255, 255, 0.7) !important;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5), inset 0 0 12px rgba(0, 255, 255, 0.3) !important;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+
+    @keyframes antiGravityFloat {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    /* Cosmic theme enhancement for opened chat window */
+    .bpWebchat {
+      border: 1px solid rgba(0, 255, 255, 0.4) !important;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 255, 255, 0.4), 0 0 50px rgba(168, 85, 247, 0.25) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+    }
+
+    @media (max-width: 768px) {
+      .bpFabWrapper {
+        bottom: 84px !important;
+        right: 18px !important;
+      }
+      .bpWebchat {
+        bottom: 0 !important;
+        right: 0 !important;
+      }
+    }
+  `;
+
+  function applyStyles(targetRoot) {
+    if (!targetRoot) return;
+    if (targetRoot.getElementById && targetRoot.getElementById(styleId)) return;
+    try {
+      const styleEl = document.createElement('style');
+      styleEl.id = styleId;
+      styleEl.textContent = customCss;
+      targetRoot.appendChild(styleEl);
+    } catch (e) {
+      console.warn('Could not inject styles into targetRoot', e);
+    }
+  }
+
+  function scanAndInject() {
+    // 1. Scan any elements that have an open shadowRoot
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach(el => {
+      if (el.shadowRoot) {
+        applyStyles(el.shadowRoot);
+      }
+    });
+
+    // 2. Specific known containers
+    const hostContainers = document.querySelectorAll('.bpChatContainer, #ai-chatbot-embed, [class*="bpChat"]');
+    hostContainers.forEach(container => {
+      if (container.shadowRoot) {
+        applyStyles(container.shadowRoot);
+      }
+      container.childNodes.forEach(child => {
+        if (child.shadowRoot) {
+          applyStyles(child.shadowRoot);
+        }
+      });
+    });
+  }
+
+  // MutationObserver to catch Botpress when it renders into DOM
+  const observer = new MutationObserver(() => {
+    scanAndInject();
+  });
+
+  if (document.body) {
+    observer.observe(document.body, { childList: true, subtree: true });
+    scanAndInject();
+  }
+
+  // Welcome bubble click & auto-hide integration
+  const welcomeBubble = document.getElementById('welcome-bubble');
+  if (welcomeBubble) {
+    welcomeBubble.addEventListener('click', () => {
+      welcomeBubble.style.display = 'none';
+      if (window.botpress && typeof window.botpress.open === 'function') {
+        window.botpress.open();
+      }
+    });
+  }
+
+  // Hide bubble when webchat is opened
+  if (window.botpress && typeof window.botpress.on === 'function') {
+    try {
+      window.botpress.on('webchat:opened', () => {
+        const bubble = document.getElementById('welcome-bubble');
+        if (bubble) bubble.style.display = 'none';
+      });
+    } catch (e) {}
+  }
+}
+
+
 

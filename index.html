@@ -815,6 +815,68 @@
     </div>
   </footer>
 
+  <!-- ====================================================================
+       WELCOME BUBBLE COMPONENT
+       ==================================================================== -->
+  <style>
+    /* Updated Welcome Bubble ka Design */
+    #welcome-bubble {
+        position: fixed;
+        bottom: 130px; /* Ise 100px se badha kar 130px kar diya taaki logo par na aaye */
+        right: 25px; /* Bot ke center ke hisaab se align kiya */
+        background: rgba(10, 10, 26, 0.8); 
+        backdrop-filter: blur(12px);
+        border: 1px solid #00FFFF;
+        box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+        padding: 8px 16px; /* Box ko thoda patla aur chota kiya */
+        border-radius: 20px 20px 5px 20px; 
+        z-index: 100000;
+        animation: floatBubble 3s ease-in-out infinite;
+        cursor: pointer;
+    }
+
+    /* Updated Font Size */
+    .neon-text {
+        font-family: 'Arial', sans-serif;
+        font-size: 13px; /* 16px se chota karke 13px kar diya */
+        font-weight: bold;
+        color: #FFFFFF;
+        letter-spacing: 0.5px;
+        text-shadow: 0 0 5px #00FFFF, 0 0 10px #8A2BE2; 
+    }
+
+    @keyframes floatBubble {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+        100% { transform: translateY(0px); }
+    }
+  </style>
+
+  <div id="welcome-bubble" onclick="this.style.display='none'">
+      <span class="neon-text">Hello, I am there! 👋</span>
+  </div>
+
+  <!-- ====================================================================
+       CUSTOM HTML / EMBED CODE COMPONENT (AI Chatbot)
+       Fixed to the bottom-right corner of the screen
+       ==================================================================== -->
+  <div id="custom-chatbot-embed" class="custom-chatbot-embed bpChatContainer" aria-label="Personal AI Chatbot Embed">
+    <style>
+      #bp-web-widget-container, #bp-widget {
+          filter: drop-shadow(0px 0px 20px rgba(0, 255, 255, 0.8)) drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5)) !important;
+          animation: antiGravityFloat 3s ease-in-out infinite;
+          z-index: 99999 !important;
+      }
+      @keyframes antiGravityFloat {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-12px); }
+          100% { transform: translateY(0px); }
+      }
+    </style>
+    <script src='https://cdn.botpress.cloud/webchat/v5.0/inject.js'></script>
+    <script src='https://files.bpcontent.cloud/2026/09/19/05/20260919052631-J2LLS4SQ.js' defer></script>
+  </div>
+
   <!-- JavaScript Scripts -->
   <script src="js/audio.js"></script>
   <script src="js/stars.js"></script>
@@ -824,3 +886,4 @@
 
 </body>
 </html>
+
